@@ -31,9 +31,13 @@ if (preg_match("/(voe|reputationsheriffkennethsand|v\-o\-e\-unblock|valeronevija
   curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 15);
   curl_setopt($ch, CURLOPT_TIMEOUT, 25);
   $h = curl_exec($ch);
+  if (preg_match("/window\.location\.href\s*\=\s*\'([^\']+)/",$h,$m)) {
+  curl_setopt($ch, CURLOPT_URL, $m[1]);
+  $h = curl_exec($ch);
+  }
   curl_close($ch);
   if (preg_match("/[\"\']hls[\'\"]\:\s*[\'\"]([^\"\']+)/",$h,$m))
-   $link=$m[1];
+   $link=base64_decode($m[1]);
   $link=$link."|Referer=".urlencode("https://voe.sx")."&Origin=".urlencode("https://voe.sx");
 }
 echo $link;

@@ -256,5 +256,5 @@ echo $link."<BR><BR>";
 //or
 $link=youtube1($l);
 echo $link."<BR><BR>";
-
+//dead
 ?>
